@@ -1,12 +1,29 @@
-[gd_scene load_steps=58 format=3 uid="uid://ukwuip4eq2dk"]
+[gd_scene load_steps=63 format=3 uid="uid://ukwuip4eq2dk"]
 
 [ext_resource type="Script" uid="uid://cjmllons7jjal" path="res://scripts/player_movement.gd" id="1_fjrip"]
 [ext_resource type="Texture2D" uid="uid://ddp2ppfv6s6pt" path="res://assets/character/Dragon/dragon_down_run.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d3mjhyx88t02n" path="res://assets/character/Dragon/dragon_down_idle.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cmkd11ckoylnx" path="res://assets/character/Dragon/dragon_cast.png" id="2_smehm"]
 [ext_resource type="Texture2D" uid="uid://80g7qe2mrph5" path="res://assets/character/Dragon/dragon_side_run.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://o78hhx41exjw" path="res://assets/character/Dragon/dragon_up_run.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://chvsaici07vbf" path="res://assets/character/Dragon/dragon_run_N.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://c3v5pvcun63q8" path="res://assets/character/Dragon/dragon_run_S.png" id="5_fjrip"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc3ue"]
+atlas = ExtResource("2_smehm")
+region = Rect2(0, 0, 62, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxlsd"]
+atlas = ExtResource("2_smehm")
+region = Rect2(62, 0, 62, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha2mi"]
+atlas = ExtResource("2_smehm")
+region = Rect2(124, 0, 62, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
+atlas = ExtResource("2_smehm")
+region = Rect2(186, 0, 62, 86)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
 atlas = ExtResource("2_qhqgy")
@@ -204,6 +221,23 @@ region = Rect2(170, 82, 85, 82)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sc3ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxlsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha2mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apa73")
+}],
+"loop": true,
+"name": &"cast",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qlg0r")
 }, {
 "duration": 1.0,
@@ -388,9 +422,9 @@ script = ExtResource("1_fjrip")
 unique_name_in_owner = true
 position = Vector2(-30, -20)
 sprite_frames = SubResource("SpriteFrames_md1ol")
-animation = &"idle"
+animation = &"cast"
 autoplay = "idle"
-frame_progress = 0.806178
+frame_progress = 0.64545
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-28, -1)
