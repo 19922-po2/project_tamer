@@ -13,7 +13,6 @@ config_version=5
 config/name="project_tamer"
 run/main_scene="uid://yajlmgso51cs"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [input]
 

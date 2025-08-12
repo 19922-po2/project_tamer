@@ -16,30 +16,30 @@ func _physics_process(_delta: float) -> void:
 
 		# Flip sprite for horizontal movement (if needed)
 		if character_direction.x > 0:
-			%AnimatedSprite2D.flip_h = false
+			%AnimatedSprite2D_player.flip_h = false
 		elif character_direction.x < 0:
-			%AnimatedSprite2D.flip_h = true
+			%AnimatedSprite2D_player.flip_h = true
 
 		# Choose animation based on exact direction
 		if character_direction.y < 0 and character_direction.x == 0:
-			%AnimatedSprite2D.animation = "run_N"
+			%AnimatedSprite2D_player.animation = "run_N"
 		elif character_direction.y > 0 and character_direction.x == 0:
-			%AnimatedSprite2D.animation = "run_S"
+			%AnimatedSprite2D_player.animation = "run_S"
 		elif character_direction.x > 0 and character_direction.y == 0:
-			%AnimatedSprite2D.animation = "run_E" #run_W
+			%AnimatedSprite2D_player.animation = "run_E"
 		elif character_direction.x < 0 and character_direction.y == 0:
-			%AnimatedSprite2D.animation = "run_E"
+			%AnimatedSprite2D_player.animation = "run_E"
 		elif character_direction.x > 0 and character_direction.y < 0:
-			%AnimatedSprite2D.animation = "run_NE"
+			%AnimatedSprite2D_player.animation = "run_NE"
 		elif character_direction.x < 0 and character_direction.y < 0:
-			%AnimatedSprite2D.animation = "run_NE" # run_NW
+			%AnimatedSprite2D_player.animation = "run_NE"
 		elif character_direction.x > 0 and character_direction.y > 0:
-			%AnimatedSprite2D.animation = "run_SE"
+			%AnimatedSprite2D_player.animation = "run_SE"
 		elif character_direction.x < 0 and character_direction.y > 0:
-			%AnimatedSprite2D.animation = "run_SE" # run_SW
+			%AnimatedSprite2D_player.animation = "run_SE"
 
 	else:
 		velocity = Vector2.ZERO
-		%AnimatedSprite2D.animation = "idle"
+		%AnimatedSprite2D_player.animation = "idle"
 
 	move_and_slide()
