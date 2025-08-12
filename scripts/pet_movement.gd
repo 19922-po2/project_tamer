@@ -28,32 +28,38 @@ func _physics_process(_delta: float) -> void:
 	# Animation & flip
 	if velocity != Vector2.ZERO:
 		var dir = velocity.normalized()
-		if dir.x > 0:
+		var tol = 0.1  # tolerance for "almost zero" checks
+
+		# Flip horizontally if moving left
+		if dir.x > tol:
 			$AnimatedSprite2D_pet.flip_h = false
-		elif dir.x < 0:
+		elif dir.x < -tol:
 			$AnimatedSprite2D_pet.flip_h = true
 
-		if dir.y < 0 and dir.x == 0:
+		# North / South
+		if dir.y < -tol and abs(dir.x) <= tol:
 			$AnimatedSprite2D_pet.animation = "run_N"
-		elif dir.y > 0 and dir.x == 0:
+		elif dir.y > tol and abs(dir.x) <= tol:
 			$AnimatedSprite2D_pet.animation = "run_S"
-		elif dir.x > 0 and dir.y == 0:
+		# East / West
+		elif dir.x > tol and abs(dir.y) <= tol:
 			$AnimatedSprite2D_pet.animation = "run_E"
-		elif dir.x < 0 and dir.y == 0:
-			$AnimatedSprite2D_pet.animation = "run_E"
-		elif dir.x > 0 and dir.y < 0:
+		elif dir.x < -tol and abs(dir.y) <= tol:
+			$AnimatedSprite2D_pet.animation = "run_E"  # flipped for west
+		# Diagonals
+		elif dir.x > tol and dir.y < -tol:
 			$AnimatedSprite2D_pet.animation = "run_NE"
-		elif dir.x < 0 and dir.y < 0:
-			$AnimatedSprite2D_pet.animation = "run_NE"
-		elif dir.x > 0 and dir.y > 0:
+		elif dir.x < -tol and dir.y < -tol:
+			$AnimatedSprite2D_pet.animation = "run_NE"  # flipped for NW
+		elif dir.x > tol and dir.y > tol:
 			$AnimatedSprite2D_pet.animation = "run_SE"
-		elif dir.x < 0 and dir.y > 0:
-			$AnimatedSprite2D_pet.animation = "run_SE"
+		elif dir.x < -tol and dir.y > tol:
+			$AnimatedSprite2D_pet.animation = "run_SE"  # flipped for SW
 	else:
 		$AnimatedSprite2D_pet.animation = "idle"
 
 func pet_follow_mode(_delta: float) -> void:
-	print("follow")
+	#print("follow")
 	var to_player = player.global_position - global_position
 	var distance_to_player = to_player.length()
 	var player_velocity = Vector2.ZERO
