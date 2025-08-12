@@ -2,12 +2,14 @@ extends CharacterBody2D
 
 var player_in_range: bool = false
 var player_ref: Node2D = null
+var pet_ref: Node2D = null
 var speed: float = 100.0     # max movement speed
 var friction: float = 500.0 # higher = faster stop
 
 func _physics_process(delta: float) -> void:
-	if player_in_range and player_ref: # Accelerate toward player
-		var direction = (player_ref.global_position - global_position).normalized()
+	pet_ref = get_parent().get_node("Pet")
+	if player_in_range and pet_ref: # Accelerate toward player
+		var direction = (pet_ref.global_position - global_position).normalized()
 		velocity = direction * speed
 	else: # Smooth stop: move velocity toward zero
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
@@ -27,6 +29,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == player_ref:
 		player_in_range = false
 		player_ref = null
+		pet_ref = null
 		print("Player left aggro range!")
 		
 func animate_and_flip():
